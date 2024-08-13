@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	Ascii "asci-art/banner"
+	"ascii-art-justify/Ascii"
 )
 
 // Helper function to get ASCII art lines for the given text
@@ -122,8 +122,7 @@ func AlignCenter(text, banner string, width int) {
 	}
 }
 
-
-func  Align(alignment string, width int) {}
+func Align(alignment string, width int) {}
 func GetTerminalWidth() int {
 	cmd := exec.Command("stty", "size")
 	cmd.Stdin = os.Stdin
