@@ -10,7 +10,7 @@ import (
 func GetLine(num int, filename string) string {
 	openFile, err := os.Open(filename + ".txt")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("fffff")
 		os.Exit(1)
 	}
 	scanner := bufio.NewScanner(openFile)
@@ -31,7 +31,10 @@ func AsciArtGenerator(input string, filename string) string {
 	var asciLine string
 
 	HandleSpecialCase(input)
-	FileCheck(filename)
+	if !Checksum(filename) {
+		fmt.Println("Error: The file has been tampered with")
+		return ""
+	}
 	input = strings.Replace(input, "\\n", "\n", -1)
 	words := strings.Split(input, "\n")
 	spaceCount := 0
