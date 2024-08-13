@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"ascii-art-justify/Ascii"
 	align "ascii-art-justify/alighnment"
 	flags "ascii-art-justify/flag"
 )
@@ -41,7 +42,11 @@ func main() {
 		alignment = flags.CheckFlag(args)
 		input = args[1]
 		banner = "standard"
-	} else if len(args) == 3 {
+	} else {
+		input = args[0]
+		banner = strings.ToLower(args[1])
+	}
+	if len(args) == 3 {
 		alignment = flags.CheckFlag(args)
 		input = args[1]
 		banner = args[2]
@@ -53,7 +58,7 @@ func processInput(input, banner, alignment string) {
 	input = strings.Replace(input, "\\n", "\n", -1)
 
 	Ascii.HandleSpecialCase(input)
-	Ascii.FileCheck(banner)
+	Ascii.Checksum(banner)
 
 	if input == "\n" {
 		fmt.Println()
@@ -85,8 +90,6 @@ func processInput(input, banner, alignment string) {
 				align.AlignLeft(line, banner)
 			case "center":
 				align.AlignCenter(line, banner, width)
-			default:
-				flags.Usage()
 			}
 		}
 	}
