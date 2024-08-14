@@ -18,26 +18,27 @@ func main() {
 	}
 
 	var banner string
-	var alignment string
+	var alignment string = "left" // Default alignment
 	var input string
 	args := os.Args[1:]
 
-	// Handle cases where alignment flag is provided.
-	if len(args) == 2 && strings.HasPrefix(args[0], "--align=") {
+	// Determine if the first argument is an alignment flag
+	if strings.HasPrefix(args[0], "--align=") {
 		alignment = flags.CheckFlag(args)
-		input = args[1]
+		args = args[1:] // Remove the alignment flag from args
+	}
+
+	// Handle cases based on the remaining number of arguments
+	switch len(args) {
+	case 1:
+		input = args[0]
 		banner = "standard"
-	} else if len(args) == 2 && !strings.Contains(args[0], "--") {
+	case 2:
 		input = args[0]
 		banner = strings.ToLower(args[1])
-		alignment = "left" // default alignment
-	} else if len(args) == 3 {
-		alignment = flags.CheckFlag([]string{args[0]})
-		input = args[1]
-		banner = strings.ToLower(args[2])
-	} else {
-		input = args[0]
-		banner = "standard"
+	default:
+		flags.Usage()
+		return
 	}
 
 	processInput(input, banner, alignment)
