@@ -22,35 +22,24 @@ func main() {
 	var input string
 	args := os.Args[1:]
 
-	if len(args) == 1 && !strings.Contains(args[0], "--") {
-		input = args[0]
-		banner = "standard"
-		if input == "" {
-			return
-		} else if input == "\\n" {
-			fmt.Println()
-			return
-		}
-		asciArt := Ascii.AsciArtGenerator(input, banner)
-		fmt.Print(asciArt)
-		return
-	} else if len(args) == 1 && strings.Contains(args[0], "--") {
-		flags.Usage()
-	}
-
-	if len(args) == 2 {
+	// Handle cases where alignment flag is provided.
+	if len(args) == 2 && strings.HasPrefix(args[0], "--align=") {
 		alignment = flags.CheckFlag(args)
 		input = args[1]
 		banner = "standard"
-	} else {
+	} else if len(args) == 2 && !strings.Contains(args[0], "--") {
 		input = args[0]
 		banner = strings.ToLower(args[1])
-	}
-	if len(args) == 3 {
-		alignment = flags.CheckFlag(args)
+		alignment = "left" // default alignment
+	} else if len(args) == 3 {
+		alignment = flags.CheckFlag([]string{args[0]})
 		input = args[1]
-		banner = args[2]
+		banner = strings.ToLower(args[2])
+	} else {
+		input = args[0]
+		banner = "standard"
 	}
+
 	processInput(input, banner, alignment)
 }
 
