@@ -122,7 +122,6 @@ func AlignCenter(text, banner string, width int) {
 	}
 }
 
-
 func GetTerminalWidth() int {
 	cmd := exec.Command("stty", "size")
 	cmd.Stdin = os.Stdin
