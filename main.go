@@ -11,45 +11,40 @@ import (
 )
 
 func main() {
-    // Check for the correct number of arguments.
-    if len(os.Args) < 2 || len(os.Args) > 4 {
-        flags.Usage()
-        return
-    }
+	// Check for the correct number of arguments.
+	if len(os.Args) < 2 || len(os.Args) > 4 {
+		flags.Usage()
+		return
+	}
 
-    var banner string
-    var alignment string = "left" // Default alignment
-    var input string
-    args := os.Args[1:]
+	var banner string
+	var alignment string = "left" // Default alignment
+	var input string
+	args := os.Args[1:]
 
-    // Determine if the first argument is an alignment flag
-    if strings.HasPrefix(args[0], "-") {
-        if !strings.HasPrefix(args[0], "--align=") {
-            flags.Usage()
-            return
-        }
-        alignment = flags.CheckFlag(args)
-        if alignment == "" {
-            // CheckFlag will have printed the usage message
-            return
-        }
-        args = args[1:] // Remove the alignment flag from args
-    }
+	// Determine if the first argument is an alignment flag
+	if strings.HasPrefix(args[0], "--align=") {
+		alignment = flags.CheckFlag(args)
+		args = args[1:] // Remove the alignment flag from args
+	} else if strings.HasPrefix(args[0], "--") {
+		flags.Usage()
+		return
+	}
 
-    // Handle cases based on the remaining number of arguments
-    switch len(args) {
-    case 1:
-        input = args[0]
-        banner = "standard"
-    case 2:
-        input = args[0]
-        banner = strings.ToLower(args[1])
-    default:
-        flags.Usage()
-        return
-    }
+	// Handle cases based on the remaining number of arguments
+	switch len(args) {
+	case 1:
+		input = args[0]
+		banner = "standard"
+	case 2:
+		input = args[0]
+		banner = strings.ToLower(args[1])
+	default:
+		flags.Usage()
+		return
+	}
 
-    processInput(input, banner, alignment)
+	processInput(input, banner, alignment)
 }
 
 func processInput(input, banner, alignment string) {

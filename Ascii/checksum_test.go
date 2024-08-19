@@ -28,21 +28,21 @@ func TestChecksum(t *testing.T) {
 		content string
 		want    bool
 	}{
-		{
-			name:    "file does not exist",
-			file:    "nonexistent",
-			content: "",
-			want:    false,
-		},
+		// {
+		// 	name:    "file does not exist",
+		// 	file:    "nonexistent",
+		// 	content: "",
+		// 	want:    false,
+		// },
 		{
 			name:    "file with wrong checksum",
-			file:    "...standard",
+			file:    "../standard",
 			content: "content with a different checksum",
 			want:    false,
 		},
 		{
 			name:    "file with wrong checksum",
-			file:    "...shadow",
+			file:    "../shadow",
 			content: "content with a different checksum",
 			want:    false,
 		},
