@@ -24,17 +24,17 @@ func main() {
 
 	// Determine if the first argument is an alignment flag
 	if strings.HasPrefix(args[0], "-") {
-        if !strings.HasPrefix(args[0], "--align=") {
-            flags.Usage()
-            return
-        }
-        alignment = flags.CheckFlag(args)
-        if alignment == "" {
-            // CheckFlag will have printed the usage message
-            return
-        }
-        args = args[1:] // Remove the alignment flag from args
-    }
+		if !strings.HasPrefix(args[0], "--align=") {
+			flags.Usage()
+			return
+		}
+		alignment = flags.CheckFlag(args)
+		if alignment == "" {
+			// CheckFlag will have printed the usage message
+			return
+		}
+		args = args[1:] // Remove the alignment flag from args
+	}
 
 	switch len(args) {
 	case 1:
@@ -70,15 +70,15 @@ func processInput(input, banner, alignment string) {
 	// Iterate over each line of the input.
 	for _, line := range lines {
 		width := align.GetTerminalWidth()
-			switch alignment {
-			case "justify":
-				align.AlignJustify(line, banner, width)
-			case "right":
-				align.AlignRight(line, banner, width)
-			case "left":
-				align.AlignLeft(line, banner)
-			case "center":
-				align.AlignCenter(line, banner, width)
-			}
+		switch alignment {
+		case "justify":
+			align.AlignJustify(line, banner, width)
+		case "right":
+			align.AlignRight(line, banner, width)
+		case "left":
+			align.AlignLeft(line, banner)
+		case "center":
+			align.AlignCenter(line, banner, width)
+		}
 	}
 }
