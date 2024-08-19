@@ -48,7 +48,7 @@ func TestChecksum(t *testing.T) {
 		},
 		{
 			name:    "file with wrong checksum",
-			file:    "thinkertoy",
+			file:    "...thinkertoy",
 			content: "content with a different checksum",
 			want:    false,
 		},

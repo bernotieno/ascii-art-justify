@@ -62,18 +62,10 @@ func processInput(input, banner, alignment string) {
 
 	// Split the input into lines based on newline characters.
 	lines := strings.Split(input, "\n")
-	spaceCount := 0
 
 	// Iterate over each line of the input.
 	for _, line := range lines {
-		if line == "" {
-			spaceCount++
-			if spaceCount < len(lines) {
-				fmt.Println()
-				continue
-			}
-		} else {
-			width := align.GetTerminalWidth()
+		width := align.GetTerminalWidth()
 			switch alignment {
 			case "justify":
 				align.AlignJustify(line, banner, width)
@@ -84,6 +76,5 @@ func processInput(input, banner, alignment string) {
 			case "center":
 				align.AlignCenter(line, banner, width)
 			}
-		}
 	}
 }
