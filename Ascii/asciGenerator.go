@@ -10,7 +10,7 @@ import (
 func GetLine(num int, filename string) string {
 	openFile, err := os.Open(filename + ".txt")
 	if err != nil {
-		fmt.Println("Error opening file")
+		fmt.Println("fffff")
 		os.Exit(1)
 	}
 	scanner := bufio.NewScanner(openFile)
@@ -22,6 +22,7 @@ func GetLine(num int, filename string) string {
 		}
 		lineNum++
 	}
+	// fmt.Printf("|%s|+", line)
 	return line
 }
 
