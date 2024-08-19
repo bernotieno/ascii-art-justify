@@ -26,9 +26,5 @@ func CheckFlag(args []string) string {
 
 func Usage() {
 	fmt.Println("Usage: go run . [OPTION] [STRING] [BANNER]\n\nExample: go run . --align=right something standard")
-<<<<<<< HEAD
-}
-=======
 	os.Exit(0)
 }
->>>>>>> ca075ec (flag validation)
