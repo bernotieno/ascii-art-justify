@@ -86,7 +86,7 @@ Output:
 To run the tests present use the following command:
 
 ```
-go test ./Ascii
+go test ./Ascii && go test ./alignment
 ```
 
 ## File Formats
