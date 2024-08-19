@@ -13,7 +13,7 @@ func TestAsciArtGenerator(t *testing.T) {
 		want string
 	}{
 		{
-            name: "Single character input",
+			name: "Single character input",
 			args: args{
 				input:    "A",
 				filename: "../standard",
