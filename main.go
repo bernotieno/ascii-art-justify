@@ -23,15 +23,19 @@ func main() {
 	args := os.Args[1:]
 
 	// Determine if the first argument is an alignment flag
-	if strings.HasPrefix(args[0], "--align=") {
-		alignment = flags.CheckFlag(args)
-		args = args[1:] // Remove the alignment flag from args
-	} else if strings.HasPrefix(args[0], "--") {
-		flags.Usage()
-		return
-	}
+	if strings.HasPrefix(args[0], "-") {
+        if !strings.HasPrefix(args[0], "--align=") {
+            flags.Usage()
+            return
+        }
+        alignment = flags.CheckFlag(args)
+        if alignment == "" {
+            // CheckFlag will have printed the usage message
+            return
+        }
+        args = args[1:] // Remove the alignment flag from args
+    }
 
-	// Handle cases based on the remaining number of arguments
 	switch len(args) {
 	case 1:
 		input = args[0]
