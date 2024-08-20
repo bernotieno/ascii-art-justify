@@ -1,9 +1,9 @@
 package Ascii
 
 import (
-	"testing"
-	"os"
 	"io/ioutil"
+	"os"
+	"testing"
 )
 
 func TestGetLine(t *testing.T) {
