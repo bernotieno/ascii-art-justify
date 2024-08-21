@@ -1,7 +1,6 @@
 package Ascii
 
 import (
-	"io/ioutil"
 	"os"
 	"testing"
 )
@@ -33,7 +32,7 @@ func TestGetLine(t *testing.T) {
 		},
 	}
 	content := []byte("This is the first line.\nThis is the second line.\nThis is the third line.\nThis is the last line.")
-	err := ioutil.WriteFile("testfile.txt", content, 0644)
+	err := os.WriteFile("testfile.txt", content, 0o644)
 	if err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
 	}
